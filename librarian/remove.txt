@@ -1,0 +1,38 @@
+<?php
+if(isset($_POST['submit']))
+{
+    $title=$_POST['title'];
+    $author1=$_POST['author1'];
+    // $author2=$_POST['author2'];
+    // $author3=$_POST['author3'];
+    $publisher=$_POST['publisher'];
+    $year=$_POST['year'];
+    $availability=$_POST['availability'];
+    $status=$_POST['status'];
+
+
+$sql1="insert into LMS.book (Title,Publisher,Year,Availability,Status) values ('$title','$publisher','$year','$availability','$status')";
+
+if($conn->query($sql1) === TRUE){
+$sql2="select max(BookId) as x from LMS.book";
+$result=$conn->query($sql2);
+$row=$result->fetch_assoc();
+$x=$row['x'];
+$sql3="insert into LMS.author values ('$x','$author1')";
+$result=$conn->query($sql3);
+// if(!empty($author2))
+// { $sql4="insert into LMS.author values('$x','$author2')";
+//   $result=$conn->query($sql4);}
+// if(!empty($author3))
+// { $sql5="insert into LMS.author values('$x','$author3')";
+//   $result=$conn->query($sql5);}
+
+echo "<script type='text/javascript'>alert('Success')</script>";
+}
+else
+{//echo $conn->error;
+echo "<script type='text/javascript'>alert('Error')</script>";
+}
+    
+}
+?>

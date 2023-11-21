@@ -1,0 +1,1 @@
+SELECT * FROM record r INNER JOIN user u ON r.Name = u.RollNo WHERE id = id
